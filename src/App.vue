@@ -1,30 +1,45 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div id="app">
+    <ExceptionHandler/>
+    <button v-if="this.$store.getters['authentication/isUserLoggedIn']" class="logout-button" @click="logout">
+      Logout
+    </button>
+    <router-view class="router"/>
+  </div>
 </template>
 
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
+  position: relative;
 }
 
-nav {
-  padding: 30px;
+.router {
+  @extend %full-page;
+  padding-top: 100px;
+  position: fixed;
+  top: 0;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+.logout-button {
+  @include outline-button($red, $secondary-color);
+  position: fixed;
+  z-index: 1;
+}
 
-    &.router-link-exact-active {
-      color: #42b983;
+</style>
+<script>
+import ExceptionHandler from "@/components/ExceptionHandler";
+import '@/assets/styles/common/citylistapp.scss';
+
+export default {
+  components: {
+    ExceptionHandler
+  },
+  methods: {
+    logout() {
+      this.$router.push('logout');
     }
   }
-}
-</style>
+};
+</script>

@@ -1,20 +1,55 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import LoginView from "@/views/LoginView";
+import DashboardView from "@/views/DashboardView";
+import CityDetailsView from "@/views/CityDetailsView";
+import store from '@/store'
+import PageNotFoundView from "@/views/PageNotFoundView";
+import LogoutView from "@/views/LogoutView";
+
+const isLoggedInGuard = (to, from, next) => {
+  if (!store.getters['authentication/isUserLoggedIn']) {
+    return next('/login');
+  }
+  next();
+};
+
+const isNotLoggedInGuard = (to, from, next) => {
+  if (store.getters['authentication/isUserLoggedIn']) {
+    return next('/dashboard');
+  }
+  next();
+};
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: '/login',
+    name: 'login',
+    component: LoginView,
+    beforeEnter: isNotLoggedInGuard,
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
+    path: '/dashboard',
+    name: 'dashboard',
+    component: DashboardView,
+    beforeEnter: isLoggedInGuard,
+  },
+  {
+    path: '/cityDetails',
+    name: 'citydetails',
+    component: CityDetailsView,
+    beforeEnter: isLoggedInGuard,
+  },
+  {
+    path: '/logout',
+    name: 'logout',
+    component: LogoutView,
+    beforeEnter: isLoggedInGuard,
+  },
+  {
+    path: "/:catchAll(.*)",
+    name: 'page-not-found',
+    component: PageNotFoundView
+  },
 ]
 
 const router = createRouter({
