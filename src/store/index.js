@@ -1,4 +1,7 @@
 import { createStore } from 'vuex'
+import authentication from "@/store/authentication";
+import exception from "@/store/exception";
+import city from "@/store/city";
 
 export default createStore({
   state: {
@@ -10,5 +13,8 @@ export default createStore({
   actions: {
   },
   modules: {
+    authentication,
+    exception,
+    city
   }
 })
