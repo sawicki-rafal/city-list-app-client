@@ -1,30 +1,30 @@
-# city-list-client
+# city-list-app (client)
 
-## Project setup
-```
-npm install
-```
+##Server startup
 
-### Compiles and hot-reloads for development
+https://github.com/sawicki-rafal/city-list-app-server
+
+##Client startup
+
+Open a command line (or terminal) and navigate to the folder where you have the project files. One can build and run the
+application by issuing the following command:
+
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Users
 
-### Run your unit tests
-```
-npm run test:unit
-```
+There are two users in app:
 
-### Lints and fixes files
-```
-npm run lint
-```
+| username | password |
+|----------|----------|
+| reader   | reader   |
+| editor   | editor   |
+
+## REST API
+
+Application on default runs on **http://localhost:8080/**. Starting point for you should be: **http://localhost:8080/login**
 
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
