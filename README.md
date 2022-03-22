@@ -1,10 +1,10 @@
 # city-list-app (client)
 
-##Server startup
+## Server startup
 
 https://github.com/sawicki-rafal/city-list-app-server
 
-##Client startup
+## Client startup
 
 Open a command line (or terminal) and navigate to the folder where you have the project files. One can build and run the
 application by issuing the following command:
